@@ -1,4 +1,4 @@
-import { Bell, HelpCircle, Users } from "lucide-react";
+import { Bell, Circle, HelpCircle, Users } from "lucide-react";
 import { Card } from "./ui/card";
 import Image from "next/image";
 
@@ -16,8 +16,8 @@ const Navbar = (props: Props) => {
           <HelpCircle className="h-4 w-4" />
           Docs
         </Card>
-        <Card className="flex p-1 px-2 text-muted-foreground items-center">
-          <Image src="/green-dot.png" alt="whatsapp" width={20} height={20} />
+        <Card className="flex p-1 gap-2 px-2 text-muted-foreground items-center">
+        <Circle className="h-4 w-4 text-green-300" fill="green"/>
           +91 7483543757
         </Card>
         <Card className="flex p-1 px-2 text-muted-foreground items-center">

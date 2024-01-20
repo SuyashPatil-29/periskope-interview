@@ -7,9 +7,7 @@ import { ComboBox } from "./ComboBox";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -25,7 +23,7 @@ const MainContent = (props: Props) => {
       invoice: "INV001",
       paymentStatus: "Paid",
       totalAmount: "$250.00",
-      lastActive: "yesterday",
+      lastActive: "3:17",
       paymentMethod: "Credit Card",
     },
     {
