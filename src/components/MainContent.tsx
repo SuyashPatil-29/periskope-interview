@@ -75,7 +75,7 @@ const MainContent = () => {
               <TableHead>Project</TableHead>
               <TableHead>Labels</TableHead>
               <TableHead className="">Members</TableHead>
-              <TableHead className="">Last Active</TableHead>
+              <TableHead className="whitespace-nowrap">Last Active</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
