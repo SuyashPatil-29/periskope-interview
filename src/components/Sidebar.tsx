@@ -17,7 +17,7 @@ type Props = {};
 
 const Sidebar = (props: Props) => {
   return (
-    <div className="fixed h-screen w-[240px] top-0 left-0 pt-4 border-r border-gray-300 text-sm">
+    <div className="fixed hidden xl:block h-screen w-[240px] top-0 left-0 pt-4 border-r border-gray-300 text-sm">
       <div className="flex items-center justify-center gap-3">
         <Avatar>
           <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />

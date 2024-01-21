@@ -20,26 +20,27 @@ import {
 
 const frameworks = [
   {
-    value: "next.js",
-    label: "Next.js",
+    value: "create",
+    label: "Create",
   },
   {
-    value: "sveltekit",
-    label: "SvelteKit",
+    value: "update",
+    label: "Update",
   },
   {
-    value: "nuxt.js",
-    label: "Nuxt.js",
+    value: "delete",
+    label: "Delete",
   },
   {
-    value: "remix",
-    label: "Remix",
+    value: "assign",
+    label: "Assign",
   },
   {
-    value: "astro",
-    label: "Astro",
+    value: "review",
+    label: "Review",
   },
-]
+  // Add more group actions as needed
+];
 
 export function ComboBox() {
   const [open, setOpen] = React.useState(false)
@@ -63,7 +64,7 @@ export function ComboBox() {
       <PopoverContent className="w-[200px] p-0">
         <Command>
           <CommandInput placeholder="Search framework..." />
-          <CommandEmpty>No framework found.</CommandEmpty>
+          <CommandEmpty>No Group action found.</CommandEmpty>
           <CommandGroup>
             {frameworks.map((framework) => (
               <CommandItem

@@ -10,7 +10,7 @@ import {
 import { Group } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { ListFilter, UsersIcon } from "lucide-react";
+import { Circle, ListFilter, UsersIcon } from "lucide-react";
 import { ComboBox } from "./ComboBox";
 import { EmptyAlert } from "./EmptyAlery";
 import { ErrorAlert } from "./ErrorAlert";
@@ -24,6 +24,8 @@ import { Input } from "./ui/input";
 import { Separator } from "./ui/separator";
 import { project } from "@prisma/client";
 import { cn } from "@/lib/utils";
+import { getCircleFill } from "@/lib/getCircleFill";
+import { useState } from "react";
 
 type Props = {};
 
@@ -44,7 +46,7 @@ const MainContent = (props: Props) => {
   console.log(groups);
 
   return (
-    <div className="ml-[240px] mr-[375px] mt-[46px] border-r border-r-gray-300">
+    <div className="xl:ml-[240px] mr-[375px] mt-[46px] border-r border-r-gray-300 min-h-[94vh] pb-10">
       <div className="flex items-center justify-between text-muted-foreground p-[13px]">
         <div className="flex gap-3">
           <Input className="w-[200px]" placeholder="Search" />
@@ -90,17 +92,19 @@ const MainContent = (props: Props) => {
                 <TableCell className="flex gap-2 items-center justify-start">
                   <Avatar className="h-8 w-8">
                     <AvatarImage src={group.imageSrc!} alt="Group-Icon" />
-                    <AvatarFallback className="bg-gray-600">
+                    <AvatarFallback className="bg-gray-400">
                       <UsersIcon className="text-white h-4 w-4" />
                     </AvatarFallback>
                   </Avatar>
-                  <p className="font-medium text-sm">{group.name}</p>
-                  <p className="text-xs text-white rounded-full bg-green-400 p-1">{group.messages}</p>
+                  <p className="font-semibold text-xs">{group.name}</p>
+                  <p className="text-[10px] text-white rounded-full bg-green-400 px-1.5">
+                    {group.messages}
+                  </p>
                 </TableCell>
                 <TableCell>
                   <Badge
                     className={cn(
-                      "bg-white hover:bg-white",
+                      "bg-white hover:bg-white text-xs whitespace-nowrap",
                       group.project === project.demo
                         ? "text-blue-400 border-current"
                         : "text-orange-400 border-current"
@@ -110,11 +114,36 @@ const MainContent = (props: Props) => {
                   </Badge>
                 </TableCell>
                 <TableCell className="flex gap-1">
-                  {group.labels.map((label, i) => (
-                    <Badge key={i} className="">{label}</Badge>
+                  {group.labels.slice(0, 2).map((label, i) => (
+                    <Badge
+                      key={i}
+                      className={cn(
+                        "bg-white hover:bg-white flex gap-1 text-xs",
+                        {
+                          "text-neutral-800 border-current":
+                            label === "High Value".replace(" ", "") || "High Value",
+                          "text-green-400 border-current": label === "Priority",
+                          "text-red-400 border-current": label === "Warm",
+                          "text-purple-500 border-current" : label === "Pilot"
+                        }
+                      )}
+                    >
+                      <p>
+                        <Circle
+                          className="h-3 w-3"
+                          fill={getCircleFill(label)}
+                        />
+                      </p>
+                      {label.length > 5 ? `${label.substring(0, 5)}...` : label}
+                    </Badge>
                   ))}
+                  {group.labels.length > 2 && (
+                    <Badge className="bg-white hover:bg-white text-xs text-red-400 border-current ">
+                      + {group.labels.length - 2}
+                    </Badge>
+                  )}
                 </TableCell>
-                <TableCell>{group.members}</TableCell>
+                <TableCell className="w-[100px]">{group.members}</TableCell>
                 <TableCell>{group.lastActive}</TableCell>
               </TableRow>
             ))}
