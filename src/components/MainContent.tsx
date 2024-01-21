@@ -41,6 +41,7 @@ const MainContent = (props: Props) => {
       const res = await axios.get("/api/get-groups");
       return res.data as Group[] | undefined;
     },
+    staleTime: 3000
   });
 
   console.log(groups);
