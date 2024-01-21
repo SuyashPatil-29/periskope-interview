@@ -1,9 +1,4 @@
-import React from "react";
-import { Input } from "./ui/input";
-import { Card } from "./ui/card";
-import { ListFilter } from "lucide-react";
-import { Button } from "./ui/button";
-import { ComboBox } from "./ComboBox";
+"use client";
 import {
   Table,
   TableBody,
@@ -12,161 +7,42 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Group } from "@prisma/client";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { ListFilter, UsersIcon } from "lucide-react";
+import { ComboBox } from "./ComboBox";
+import { EmptyAlert } from "./EmptyAlery";
+import { ErrorAlert } from "./ErrorAlert";
+import { LoadingState } from "./LoadingCard";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
+import { Card } from "./ui/card";
 import { Checkbox } from "./ui/checkbox";
+import { Input } from "./ui/input";
 import { Separator } from "./ui/separator";
+import { project } from "@prisma/client";
+import { cn } from "@/lib/utils";
 
 type Props = {};
 
 const MainContent = (props: Props) => {
-  const invoices = [
-    {
-      invoice: "INV001",
-      paymentStatus: "Paid",
-      totalAmount: "$250.00",
-      lastActive: "3:17",
-      paymentMethod: "Credit Card",
+  const {
+    data: groups,
+    isFetching,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["groups"],
+    queryFn: async () => {
+      const res = await axios.get("/api/get-groups");
+      return res.data as Group[] | undefined;
     },
-    {
-      invoice: "INV002",
-      paymentStatus: "Pending",
-      totalAmount: "$150.00",
-      lastActive: "yesterday",
-      paymentMethod: "PayPal",
-    },
-    {
-      invoice: "INV003",
-      paymentStatus: "Unpaid",
-      totalAmount: "$350.00",
-      lastActive: "yesterday",
-      paymentMethod: "Bank Transfer",
-    },
-    {
-      invoice: "INV004",
-      paymentStatus: "Paid",
-      totalAmount: "$450.00",
-      lastActive: "yesterday",
-      paymentMethod: "Credit Card",
-    },
-    {
-      invoice: "INV005",
-      paymentStatus: "Paid",
-      totalAmount: "$550.00",
-      lastActive: "yesterday",
-      paymentMethod: "PayPal",
-    },
-    {
-      invoice: "INV006",
-      paymentStatus: "Pending",
-      totalAmount: "$200.00",
-      lastActive: "yesterday",
-      paymentMethod: "Bank Transfer",
-    },
-    {
-      invoice: "INV007",
-      paymentStatus: "Unpaid",
-      totalAmount: "$300.00",
-      lastActive: "yesterday",
-      paymentMethod: "Credit Card",
-    },
-    {
-      invoice: "INV001",
-      paymentStatus: "Paid",
-      totalAmount: "$250.00",
-      lastActive: "yesterday",
-      paymentMethod: "Credit Card",
-    },
-    {
-      invoice: "INV002",
-      paymentStatus: "Pending",
-      totalAmount: "$150.00",
-      lastActive: "yesterday",
-      paymentMethod: "PayPal",
-    },
-    {
-      invoice: "INV003",
-      paymentStatus: "Unpaid",
-      totalAmount: "$350.00",
-      lastActive: "yesterday",
-      paymentMethod: "Bank Transfer",
-    },
-    {
-      invoice: "INV004",
-      paymentStatus: "Paid",
-      totalAmount: "$450.00",
-      lastActive: "yesterday",
-      paymentMethod: "Credit Card",
-    },
-    {
-      invoice: "INV005",
-      paymentStatus: "Paid",
-      totalAmount: "$550.00",
-      lastActive: "yesterday",
-      paymentMethod: "PayPal",
-    },
-    {
-      invoice: "INV006",
-      paymentStatus: "Pending",
-      totalAmount: "$200.00",
-      lastActive: "yesterday",
-      paymentMethod: "Bank Transfer",
-    },
-    {
-      invoice: "INV007",
-      paymentStatus: "Unpaid",
-      totalAmount: "$300.00",
-      lastActive: "yesterday",
-      paymentMethod: "Credit Card",
-    },
-    {
-      invoice: "INV001",
-      paymentStatus: "Paid",
-      totalAmount: "$250.00",
-      lastActive: "yesterday",
-      paymentMethod: "Credit Card",
-    },
-    {
-      invoice: "INV002",
-      paymentStatus: "Pending",
-      totalAmount: "$150.00",
-      lastActive: "yesterday",
-      paymentMethod: "PayPal",
-    },
-    {
-      invoice: "INV003",
-      paymentStatus: "Unpaid",
-      totalAmount: "$350.00",
-      lastActive: "yesterday",
-      paymentMethod: "Bank Transfer",
-    },
-    {
-      invoice: "INV004",
-      paymentStatus: "Paid",
-      totalAmount: "$450.00",
-      lastActive: "yesterday",
-      paymentMethod: "Credit Card",
-    },
-    {
-      invoice: "INV005",
-      paymentStatus: "Paid",
-      totalAmount: "$550.00",
-      lastActive: "yesterday",
-      paymentMethod: "PayPal",
-    },
-    {
-      invoice: "INV006",
-      paymentStatus: "Pending",
-      totalAmount: "$200.00",
-      lastActive: "yesterday",
-      paymentMethod: "Bank Transfer",
-    },
-    {
-      invoice: "INV007",
-      paymentStatus: "Unpaid",
-      totalAmount: "$300.00",
-      lastActive: "yesterday",
-      paymentMethod: "Credit Card",
-    },
-  ];
+  });
+
+  console.log(groups);
+
   return (
     <div className="ml-[240px] mr-[375px] mt-[46px] border-r border-r-gray-300">
       <div className="flex items-center justify-between text-muted-foreground p-[13px]">
@@ -187,34 +63,66 @@ const MainContent = (props: Props) => {
 
       <Separator />
 
-      <Table className="border-t-1 border-gray-300">
-        <TableHeader>
-          <TableRow>
-            <TableHead>
-              <Checkbox id="all" />
-            </TableHead>
-            <TableHead className="w-[300px]">Group name</TableHead>
-            <TableHead>Project</TableHead>
-            <TableHead>Labels</TableHead>
-            <TableHead className="">Members</TableHead>
-            <TableHead className="">Last Active</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {invoices.map((invoice) => (
-            <TableRow key={invoice.invoice}>
-              <TableCell>
-                <Checkbox id={invoice.invoice} />
-              </TableCell>
-              <TableCell>{invoice.invoice}</TableCell>
-              <TableCell>{invoice.paymentStatus}</TableCell>
-              <TableCell>{invoice.paymentMethod}</TableCell>
-              <TableCell>{invoice.totalAmount}</TableCell>
-              <TableCell>{invoice.lastActive}</TableCell>
+      {isLoading || isFetching ? (
+        <LoadingState />
+      ) : isError ? (
+        <ErrorAlert />
+      ) : groups && groups.length > 0 ? (
+        <Table className="border-t-1 border-gray-300">
+          <TableHeader>
+            <TableRow>
+              <TableHead>
+                <Checkbox id="all" />
+              </TableHead>
+              <TableHead className="w-[300px]">Group name</TableHead>
+              <TableHead>Project</TableHead>
+              <TableHead>Labels</TableHead>
+              <TableHead className="">Members</TableHead>
+              <TableHead className="">Last Active</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {groups.map((group) => (
+              <TableRow key={group.id} className="hover:bg-gray-200">
+                <TableCell>
+                  <Checkbox id={group.id.toLocaleString()} />
+                </TableCell>
+                <TableCell className="flex gap-2 items-center justify-start">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src={group.imageSrc!} alt="Group-Icon" />
+                    <AvatarFallback className="bg-gray-600">
+                      <UsersIcon className="text-white h-4 w-4" />
+                    </AvatarFallback>
+                  </Avatar>
+                  <p className="font-medium text-sm">{group.name}</p>
+                  <p className="text-xs text-white rounded-full bg-green-400 p-1">{group.messages}</p>
+                </TableCell>
+                <TableCell>
+                  <Badge
+                    className={cn(
+                      "bg-white hover:bg-white",
+                      group.project === project.demo
+                        ? "text-blue-400 border-current"
+                        : "text-orange-400 border-current"
+                    )}
+                  >
+                    # {group.project}
+                  </Badge>
+                </TableCell>
+                <TableCell className="flex gap-1">
+                  {group.labels.map((label, i) => (
+                    <Badge key={i} className="">{label}</Badge>
+                  ))}
+                </TableCell>
+                <TableCell>{group.members}</TableCell>
+                <TableCell>{group.lastActive}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      ) : (
+        <EmptyAlert />
+      )}
     </div>
   );
 };

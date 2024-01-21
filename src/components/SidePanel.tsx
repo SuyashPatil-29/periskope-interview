@@ -58,7 +58,7 @@ const SidePanel = (props: Props) => {
               Dissappearing Messages
             </p>
             <p className="text-muted-foreground font-semibold text-sm">
-              3 : 17
+              Off
             </p>
           </div>
           <div className="flex items-center justify-between px-6 py-2 w-[330px]">
@@ -66,7 +66,7 @@ const SidePanel = (props: Props) => {
               Send Message Permission
             </p>
             <p className="text-muted-foreground font-semibold text-sm">
-              3 : 17
+              All
             </p>
           </div>
           <div className="flex items-center justify-between px-6 py-2 w-[330px]">
@@ -77,7 +77,7 @@ const SidePanel = (props: Props) => {
           </div>
           <div className="flex items-start justify-between px-6 py-2 w-[330px]">
             <p className="text-gray-400 font-semibold text-sm">Labels</p>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 text-right">
               <Badge className="text-gray-700 bg-white border-current text-right">
                 High V...
               </Badge>

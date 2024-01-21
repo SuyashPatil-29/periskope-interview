@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,12 +7,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum project {
+  demo
+  client
+}
+
 model Group {
   id         Int      @id @default(autoincrement())
-  imageSrc   String
+  imageSrc   String?
   name       String
-  project    String
-  labels     String[]
+  project    project
+  labels     String[] // Representing an array of strings
   members    Int
-  lastActive DateTime
+  messages   Int
+  lastActive String
 }
