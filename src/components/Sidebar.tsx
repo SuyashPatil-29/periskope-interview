@@ -20,7 +20,7 @@ const Sidebar = (props: Props) => {
     <div className="fixed hidden xl:block h-screen w-[240px] top-0 left-0 pt-4 border-r border-gray-300 text-sm">
       <div className="flex items-center justify-center gap-3">
         <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+          <AvatarImage src="https://avatars.githubusercontent.com/u/112413583?s=400&u=1accc6b25507922c6474f825f88faf546d6883d8&v=4" alt="@shadcn" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <div>

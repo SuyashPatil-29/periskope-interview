@@ -15,7 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "./ui/separator";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { CalendarDays, Circle, FolderOutput, LogOut, RefreshCcw, Signal } from "lucide-react";
+import { CalendarDays, ChevronsUpDown, Circle, FolderOutput, LogOut, RefreshCcw, Signal } from "lucide-react";
 import { Badge } from "./ui/badge";
 
 type Props = {};
@@ -32,9 +32,9 @@ const SidePanel = (props: Props) => {
 
           <p className=" font-semibold">Evoke {"<>"} Scope</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 cursor-pointer" onClick={() => window.location.reload()}>
           <RefreshCcw className="h-3 w-3 text-muted-foreground" />
-          <p className="text-muted-foreground text-xs">Refresh</p>
+          <p className="text-muted-foreground font-semibold text-xs">Refresh</p>
         </div>
       </div>
 
@@ -47,47 +47,49 @@ const SidePanel = (props: Props) => {
           <TabsTrigger value="logs">Logs</TabsTrigger>
         </TabsList>
         <TabsContent value="account">
-          <div className="flex items-center justify-between px-6 py-2 w-[330px]">
+          <div className="flex items-center justify-between px-6 py-1.5 w-[330px]">
             <p className="text-gray-400 font-semibold text-sm">Last Active</p>
             <p className="text-muted-foreground font-semibold text-sm">
               3 : 17
             </p>
           </div>
-          <div className="flex items-center justify-between px-6 py-2 w-[330px]">
-            <p className="text-gray-400 font-semibold text-sm">
+          <div className="flex items-center justify-between px-6 py-1.5 w-[330px]">
+            <p className="text-gray-400 font-semibold text-sm flex gap-1">
               Dissappearing Messages
             </p>
-            <p className="text-muted-foreground font-semibold text-sm">
+            <Card className="text-muted-foreground font-semibold text-xs flex gap-1 p-1 items-center justify-center">
               Off
-            </p>
+              <ChevronsUpDown className="h-4 w-4"/>
+            </Card>
           </div>
-          <div className="flex items-center justify-between px-6 py-2 w-[330px]">
+          <div className="flex items-center justify-between px-6 py-1.5 w-[330px]">
             <p className="text-gray-400 font-semibold text-sm">
               Send Message Permission
             </p>
-            <p className="text-muted-foreground font-semibold text-sm">
+            <Card className="text-muted-foreground font-semibold text-xs p-1 items-center justify-center flex">
               All
-            </p>
+              <ChevronsUpDown className="h-4 w-4"/>
+            </Card>
           </div>
-          <div className="flex items-center justify-between px-6 py-2 w-[330px]">
+          <div className="flex items-center justify-between px-6 py-1.5 w-[330px]">
             <p className="text-gray-400 font-semibold text-sm">Project</p>
-            <Badge className="text-blue-400 bg-white border-current text-right">
+            <Badge className=" hover:bg-white text-blue-400 bg-white border-current text-right">
               #Demo
             </Badge>
           </div>
-          <div className="flex items-start justify-between px-6 py-2 w-[330px]">
+          <div className="flex items-start justify-between px-6 py-1.5 w-[330px]">
             <p className="text-gray-400 font-semibold text-sm">Labels</p>
             <div className="flex flex-col gap-2 text-right">
-              <Badge className="text-gray-700 bg-white border-current text-right">
+              <Badge className=" hover:bg-white text-gray-700 bg-white border-current text-right">
                 High V...
               </Badge>
-              <Badge className="text-green-500 bg-white border-current text-right">
+              <Badge className=" hover:bg-white text-green-500 bg-white border-current text-right">
                 Priority
               </Badge>
-              <Badge className="text-red-400 bg-white border-current text-right">
+              <Badge className=" hover:bg-white text-red-400 bg-white border-current text-right">
                 Warm
               </Badge>
-              <Badge className="text-muted-foreground bg-white border-current text-right">
+              <Badge className=" hover:bg-white text-muted-foreground bg-white border-current text-right">
                 + Add
               </Badge>
             </div>
@@ -144,11 +146,11 @@ const SidePanel = (props: Props) => {
       </Tabs>
 
       <div className="pl-4">
-        <div className="flex gap-3 items-center justify-start font-semibold text-muted-foreground mt-1">
+        <div className="flex gap-3 items-center justify-start font-semibold text-muted-foreground mt-1 text-sm">
           <FolderOutput className="h-3 w-3 text-muted-foreground font-medium" />
           Export Chat
         </div>
-        <div className="flex gap-3 items-center justify-start font-semibold text-red-500 mt-1">
+        <div className="flex gap-3 items-center justify-start font-semibold text-red-500 mt-1 text-sm">
           <LogOut className="h-3 w-3 text-red-500 font-medium" />
           Exit Group
         </div>
@@ -156,7 +158,7 @@ const SidePanel = (props: Props) => {
 
       <div className="mt-6 px-3">
         <div className="flex gap-3 items-center justify-between">
-          <p className=" font-semibold text-muted-foreground">
+          <p className=" font-semibold text-muted-foreground text-sm">
             {" "}
             PER 0-11 | Evoke {"<>"} Scope
           </p>
@@ -167,7 +169,7 @@ const SidePanel = (props: Props) => {
         </div>
         <div className="flex gap-3 items-center justify-start">
           <Circle className="h-3 w-3 text-red-500" />
-          <p className=" font-semibold text-gray-700">
+          <p className=" font-semibold text-gray-700 text-sm">
             Issues with mentions on group
           </p>
         </div>

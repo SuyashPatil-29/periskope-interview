@@ -7,7 +7,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Group } from "@prisma/client";
+import { getCircleFill } from "@/lib/getCircleFill";
+import { cn } from "@/lib/utils";
+import { Group, project } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Circle, ListFilter, UsersIcon } from "lucide-react";
@@ -22,14 +24,8 @@ import { Card } from "./ui/card";
 import { Checkbox } from "./ui/checkbox";
 import { Input } from "./ui/input";
 import { Separator } from "./ui/separator";
-import { project } from "@prisma/client";
-import { cn } from "@/lib/utils";
-import { getCircleFill } from "@/lib/getCircleFill";
-import { useState } from "react";
 
-type Props = {};
-
-const MainContent = (props: Props) => {
+const MainContent = () => {
   const {
     data: groups,
     isFetching,
@@ -43,8 +39,6 @@ const MainContent = (props: Props) => {
     },
     staleTime: 3000
   });
-
-  console.log(groups);
 
   return (
     <div className="xl:ml-[240px] mr-[350px] mt-[46px] border-r border-r-gray-300 min-h-[94vh] pb-10">
@@ -105,7 +99,7 @@ const MainContent = (props: Props) => {
                 <TableCell>
                   <Badge
                     className={cn(
-                      "bg-white hover:bg-white text-xs whitespace-nowrap",
+                      "bg-white hover:bg-white text-xs whitespace-nowrap text-center",
                       group.project === project.demo
                         ? "text-blue-400 border-current"
                         : "text-orange-400 border-current"
@@ -115,11 +109,11 @@ const MainContent = (props: Props) => {
                   </Badge>
                 </TableCell>
                 <TableCell className="flex gap-1 items-center justify-start mb-[5px] whitespace-nowrap">
-                  {group.labels.slice(0, 2).map((label, i) => (
+                  {group.labels.slice(0, 2).sort().map((label, i) => (
                     <Badge
                       key={i}
                       className={cn(
-                        "bg-white hover:bg-white flex gap-0 text-xs whitespace-nowrap p-1",
+                        "bg-white hover:bg-white flex gap-1 text-xs whitespace-nowrap p-1",
                         {
                           "text-neutral-800 border-current":
                             label === "High Value".replace(" ", "") || "High Value",
