@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,11 +11,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from "./ui/separator";
-import Image from "next/image";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { CalendarDays, ChevronsUpDown, Circle, FolderOutput, LogOut, RefreshCcw, Signal } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Badge } from "./ui/badge";
+import { Separator } from "./ui/separator";
 
 type Props = {};
 
@@ -80,17 +78,20 @@ const SidePanel = (props: Props) => {
           <div className="flex items-start justify-between px-6 py-1.5 w-[330px]">
             <p className="text-gray-400 font-semibold text-sm">Labels</p>
             <div className="flex flex-col gap-2 text-right">
-              <Badge className=" hover:bg-white text-gray-700 bg-white border-current text-right">
+              <Badge className=" hover:bg-white text-gray-700 bg-white border-current text-right flex items-center justify-start gap-1">
+                <Circle className="h-3 w-3" fill="black"/>
                 High V...
               </Badge>
-              <Badge className=" hover:bg-white text-green-500 bg-white border-current text-right">
+              <Badge className=" hover:bg-white text-green-500 bg-white border-current text-right flex items-center justify-start gap-1">
+                <Circle className="h-3 w-3" fill="green"/>
                 Priority
               </Badge>
-              <Badge className=" hover:bg-white text-red-400 bg-white border-current text-right">
+              <Badge className=" hover:bg-white text-red-400 bg-white border-current text-right flex items-center justify-start gap-1">
+                <Circle className="h-3 w-3" fill="red"/>
                 Warm
               </Badge>
               <Badge className=" hover:bg-white text-muted-foreground bg-white border-current text-right">
-                + Add
+                + Add New
               </Badge>
             </div>
           </div>

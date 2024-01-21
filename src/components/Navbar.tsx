@@ -1,11 +1,8 @@
 import { Bell, Circle, HelpCircle, Users } from "lucide-react";
-import { Card } from "./ui/card";
-import Image from "next/image";
 import { MobileSideBar } from "./MobileSideBar";
+import { Card } from "./ui/card";
 
-type Props = {};
-
-const Navbar = (props: Props) => {
+const Navbar = () => {
   return (
     <div className="flex fixed xl:w-[calc(100vw-240px)] w-screen top-0 right-0 border-b bg-white border-b-gray-300 items-center justify-between pt-2 z-10 text-muted-foreground text-sm pb-2">
       <div className="flex gap-2">

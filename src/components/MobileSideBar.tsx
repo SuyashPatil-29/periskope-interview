@@ -1,19 +1,19 @@
 import { Button } from "@/components/ui/button";
 import {
-    Sheet,
-    SheetContent,
-    SheetTrigger
+  Sheet,
+  SheetContent,
+  SheetTrigger
 } from "@/components/ui/sheet";
 import {
-    BellRing,
-    ChevronsUpDown,
-    Contact,
-    FolderClosed,
-    Home,
-    Menu,
-    MessageCircleMore,
-    Settings,
-    Users,
+  BellRing,
+  ChevronsUpDown,
+  Contact,
+  FolderClosed,
+  Home,
+  Menu,
+  MessageCircleMore,
+  Settings,
+  Users,
 } from "lucide-react";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
