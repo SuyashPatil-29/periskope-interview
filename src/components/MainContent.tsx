@@ -47,7 +47,7 @@ const MainContent = (props: Props) => {
   console.log(groups);
 
   return (
-    <div className="xl:ml-[240px] mr-[375px] mt-[46px] border-r border-r-gray-300 min-h-[94vh] pb-10">
+    <div className="xl:ml-[240px] mr-[350px] mt-[46px] border-r border-r-gray-300 min-h-[94vh] pb-10">
       <div className="flex items-center justify-between text-muted-foreground p-[13px]">
         <div className="flex gap-3">
           <Input className="w-[200px]" placeholder="Search" />
@@ -91,13 +91,13 @@ const MainContent = (props: Props) => {
                   <Checkbox id={group.id.toLocaleString()} />
                 </TableCell>
                 <TableCell className="flex gap-2 items-center justify-start">
-                  <Avatar className="h-8 w-8">
+                  <Avatar className="h-6 w-6">
                     <AvatarImage src={group.imageSrc!} alt="Group-Icon" />
                     <AvatarFallback className="bg-gray-400">
                       <UsersIcon className="text-white h-4 w-4" />
                     </AvatarFallback>
                   </Avatar>
-                  <p className="font-semibold text-xs">{group.name}</p>
+                  <p className="font-semibold text-xs text-muted-foreground">{group.name}</p>
                   <p className="text-[10px] text-white rounded-full bg-green-400 px-1.5">
                     {group.messages}
                   </p>
@@ -114,12 +114,12 @@ const MainContent = (props: Props) => {
                     # {group.project}
                   </Badge>
                 </TableCell>
-                <TableCell className="flex gap-1">
+                <TableCell className="flex gap-1 items-center justify-start mb-[5px] whitespace-nowrap">
                   {group.labels.slice(0, 2).map((label, i) => (
                     <Badge
                       key={i}
                       className={cn(
-                        "bg-white hover:bg-white flex gap-1 text-xs",
+                        "bg-white hover:bg-white flex gap-0 text-xs whitespace-nowrap p-1",
                         {
                           "text-neutral-800 border-current":
                             label === "High Value".replace(" ", "") || "High Value",
@@ -144,8 +144,8 @@ const MainContent = (props: Props) => {
                     </Badge>
                   )}
                 </TableCell>
-                <TableCell className="w-[100px]">{group.members}</TableCell>
-                <TableCell>{group.lastActive}</TableCell>
+                <TableCell className="w-[100px] text-center py-[-8px]">{group.members}</TableCell>
+                <TableCell className="text-muted-foreground font-semibold text-sm text-center py-[-8px]">{group.lastActive}</TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -22,7 +22,7 @@ type Props = {};
 
 const SidePanel = (props: Props) => {
   return (
-    <div className="fixed right-0 top-0 w-[375px] h-full mt-10">
+    <div className="fixed right-0 top-0 w-[350px] h-full mt-10">
       <div className="flex items-center justify-between px-6">
         <div className="flex items-center justify-center gap-3 py-4">
           <Avatar>

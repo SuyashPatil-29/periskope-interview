@@ -7,7 +7,7 @@ type Props = {};
 
 const Navbar = (props: Props) => {
   return (
-    <div className="flex fixed xl:w-[calc(100vw-240px)] w-screen top-0 right-0 border-b border-b-gray-300 items-center justify-between mt-2 z-10 text-muted-foreground text-sm pb-2">
+    <div className="flex fixed xl:w-[calc(100vw-240px)] w-screen top-0 right-0 border-b bg-white border-b-gray-300 items-center justify-between pt-2 z-10 text-muted-foreground text-sm pb-2">
       <div className="flex gap-2">
         <div className="xl:hidden block"><MobileSideBar /></div>
         <div className="flex text-muted-foreground gap-3 items-center ml-2">
