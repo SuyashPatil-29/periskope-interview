@@ -60,7 +60,6 @@ const MainContent = () => {
             Bulk Message
           </Button>
           <ComboBox />
-          <Button variant="ghost" onClick={handleRefreshClick}><RefreshCcw className="h-5 w-5"/></Button>
         </div>
       </div>
 
