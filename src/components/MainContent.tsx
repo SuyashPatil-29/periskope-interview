@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 import { Group, project } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Circle, ListFilter, UsersIcon } from "lucide-react";
+import { Circle, ListFilter, RefreshCcw, UsersIcon } from "lucide-react";
 import { ComboBox } from "./ComboBox";
 import { EmptyAlert } from "./EmptyAlery";
 import { ErrorAlert } from "./ErrorAlert";
@@ -31,6 +31,7 @@ const MainContent = () => {
     isFetching,
     isLoading,
     isError,
+    refetch
   } = useQuery({
     queryKey: ["groups"],
     queryFn: async () => {
@@ -39,6 +40,10 @@ const MainContent = () => {
     },
     staleTime: 3000
   });
+
+  const handleRefreshClick = () => {
+    refetch();
+  };
 
   return (
     <div className="xl:ml-[240px] mr-[350px] mt-[46px] border-r border-r-gray-300 min-h-[94vh] pb-10">
@@ -55,6 +60,7 @@ const MainContent = () => {
             Bulk Message
           </Button>
           <ComboBox />
+          <Button variant="ghost" onClick={handleRefreshClick}><RefreshCcw className="h-5 w-5"/></Button>
         </div>
       </div>
 
